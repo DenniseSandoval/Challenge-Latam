@@ -3,7 +3,7 @@ WORKDIR /app
 COPY . /app
 RUN pip install --no-cache-dir -r requirements.txt
 
-# EXPOSE 8080
+EXPOSE 8000
 
 # Comando de inicio
-CMD ["python", "app.py"]
+CMD ["uvicorn", "challenge.api:app", "--host", "127.0.0.1", "--port", "8000"]
