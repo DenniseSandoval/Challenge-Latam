@@ -1,7 +1,14 @@
 name: 'Continuous Delivery'
 
 on:
-  ...
+  push:
+    branches:
+      - main
 
 jobs:
-  ...
+  deploy:
+      runs-on: ubuntu-latest
+      steps:
+          - name: Deploy GCP
+            run: uvicorn challenge.api:app --reload
+  
