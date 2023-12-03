@@ -1,2 +1,2 @@
-runtime: python3114
+runtime: python311
 entrypoint: uvicorn challenge.api:app --reload
