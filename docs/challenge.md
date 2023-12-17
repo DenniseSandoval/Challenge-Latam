@@ -1,51 +1,51 @@
-# Execution of the local project
+#Ejecucion del proyecto local
 
-For correct execution, start by installing the following:
+Para la correcta ejecucion empezar instalando lo siguiente:
 pip install --upgrade pip
 pip install -r requirements-test.txt
 
-After that in the terminal execute
+Luego de ello en el terminal ejecutar
 
 uvicorn challenge.api:app --reload
 
 
-# Docker execution
+#Ejecucion Docker
 
-write the commands
+escribir los comandos
 docker build -t challenge-latam:latest .
 docker run -p 8000 challenge-latam
 
-Test Execution
-The UnitTest were executed correctly covering all the test cases established in the project, only in the test_model.py the access path to the file was changed data_path = Path(os.getcwd(),"data/data.csv") in the setUp function
+Ejecucion Test
+Los UnitTest fueron ejecutados correctamente cubriendo todos los casos de prueba establecidos en el proyecto, unicamente en el test_model.py se cambio la ruta de acceso al archivo data_path = Path(os.getcwd(),"data/data.csv") en la funcion setUp
 
 make model-test
 make api-test
 
-# Deploy GCP
+#Deploy GCP
 
-For the deployment in the cloud, the app.yaml file was configured, and the cd/ci files were also configured with the corresponding branches and the steps for the correct deployment of the application.
+Para el deploy en la nube se configuro el archivo app.yaml, asi mismo se configuro los archivos cd/ci con las ramas correspondientes y los pasos para el correcto deploy de la aplicacion.
 
-GCP server URL: https://latam-challenge-407003.ue.r.appspot.com
-# APIS
-  get: https://latam-challenge-407003.ue.r.appspot.com/health
-  post: https://latam-challenge-407003.ue.r.appspot.com/predict
-         body: {
-             "flights": [
-                 {
-                     "OPERA": "Aerolineas Argentinas",
-                     "TYPEFLIGHT": "N",
-                     "MONTH": 3
-                 }
-             ]
-         }
+URL servidor GCP: https://latam-challenge-407003.ue.r.appspot.com
+#APIS
+ get: https://latam-challenge-407003.ue.r.appspot.com/health
+ post: https://latam-challenge-407003.ue.r.appspot.com/predict
+        body: {
+            "flights": [
+                {
+                    "OPERA": "Aerolineas Argentinas", 
+                    "TIPOVUELO": "N", 
+                    "MES": 3
+                }
+            ]
+        }
 
-# Selected Model
-Regarding the choice of the model for the final implementation, Logistic Regression was chosen. This decision is based on practical considerations such as time constraints, package dependencies, and ease of use. Selecting Logistic Regression reduces third-party dependency for the component, and the inherent simplicity of this library helps deliver a complete solution efficiently.
+#Modelo Seleccionado
+En cuanto a la elección del modelo para la implementación final, se optó por Logistic Regression. Esta decisión se basa en consideraciones prácticas como limitaciones de tiempo, dependencias de paquetes y la facilidad de uso. Al seleccionar Logistic Regression, se reduce la dependencia de terceros para el componente, y la simplicidad inherente de esta biblioteca contribuye a ofrecer una solución completa de manera eficiente.
 
-This choice aligns with the guidance of the Data Scientist, who indicated that one of the models with Feature Importance and Balance should be selected. Given that both models presented similar results in the classification report, with slight variations in the recall, the choice of Logistic Regression is based on its greater ease of interpretation. This feature will allow you to more clearly understand the impact of each Feature on the model training results. In this case, the ability to understand the reasoning behind the results is valued to improve performance in future iterations of the project.
+Esta elección se alinea con la orientación del Científico de Datos, quien indicó que se debía seleccionar uno de los modelos con Feature Importance y Balance. Dado que ambos modelos presentaron resultados similares en el classification report, con ligeras variaciones en el recall, la elección de Logistic Regression se basa en su mayor facilidad de interpretación. Esta característica permitirá comprender con mayor claridad el impacto de cada Feature en los resultados del entrenamiento del modelo. En este caso, se valora la capacidad de entender el razonamiento detrás de los resultados para mejorar el desempeño en futuras iteraciones del proyecto.
 
 
-# APIS
-The solution was implemented that allows the model file to be loaded only at the beginning of the execution and thus have it in memory.
+#APIS
+Se implemento la solucion que permite cargar el archivo el modelo unicamente al inicio de la ejecucion y asi tenerlo en memoria.
 
-In our FastAPI application, we have established an endpoint that leverages the previously generated model to make predictions based on the input data. Users have the ability to send requests to this endpoint, and the model will respond with predictions in an agile manner.
+En nuestra aplicación FastAPI, hemos establecido un punto final que aprovecha el modelo previamente generado para realizar predicciones basadas en los datos de entrada. Los usuarios tienen la capacidad de enviar solicitudes a este punto final, y el modelo responderá con predicciones de manera ágil.
