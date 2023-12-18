@@ -13,7 +13,7 @@ uvicorn challenge.api:app --reload
 
 escribir los comandos
 docker build -t challenge-latam:latest .
-docker run -p 8000 challenge-latam
+docker run -p 8000:8000 challenge-latam
 
 Ejecucion Test
 Los UnitTest fueron ejecutados correctamente cubriendo todos los casos de prueba establecidos en el proyecto, unicamente en el test_model.py se cambio la ruta de acceso al archivo data_path = Path(os.getcwd(),"data/data.csv") en la funcion setUp

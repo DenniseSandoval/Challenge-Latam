@@ -7,10 +7,10 @@ WORKDIR /app
 COPY . /app
 
 # Instala las dependencias
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Expone el puerto
 EXPOSE 8000
 
 # Comando de inicio
-CMD ["uvicorn", "challenge.api:app", "--host", "127.0.0.1", "--port", "8000", "--reload"]
+CMD ["uvicorn", "challenge.api:app", "--host", "0.0.0.0", "--port", "8000"]
